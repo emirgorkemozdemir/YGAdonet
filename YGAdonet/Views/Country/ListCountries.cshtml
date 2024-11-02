@@ -1,0 +1,40 @@
+﻿@using YGAdonet.Models
+@model List<Country>
+@{
+    Layout = null;
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+</head>
+
+<body>
+    <table class="table table-bordered" style="max-width:98vw;margin:1%">
+        <thead>
+            <tr>
+                <th>Country Name</th>
+                <th>Country Count</th>
+                <td>Delete Country</td>
+                <td>Edit Country</td>
+            </tr>
+        </thead>
+
+        <tbody>
+           @foreach (var ulke in Model)
+           {
+               <tr>
+                   <td>@ulke.CountryName</td>
+                   <td>@ulke.CountryCount</td>
+                   <td>
+                       <a class="btn btn-danger" href="@Url.Action("DeleteCountry","Country",new {id=ulke.CountryID})">Delete Country</a>
+                   </td>
+                   <td>
+                       <a class="btn btn-warning" href="@Url.Action("EditCountry","Country",new {id=ulke.CountryID})">Edit Country</a>
+                   </td>
+               </tr>
+           }
+        </tbody>
+    </table>
+
+    <a style="margin:1%" class="btn btn-info" href="@Url.Action("AddCountry","Country")">Add Country</a>
+</body>

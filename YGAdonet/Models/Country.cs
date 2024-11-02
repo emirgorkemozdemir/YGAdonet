@@ -26,6 +26,8 @@ namespace YGAdonet.Models
         [Required (ErrorMessage ="Ülke adý boþ býrakýlamaz.")]
         [MaxLength(20,ErrorMessage ="Ülke adý 20 karakterden fazla olamaz.")]
         public string CountryName { get; set; }
+
+        [Required(ErrorMessage = "Ülkedeki kayýtlý kiþi sayýsý boþ býrakýlamaz.")]
         public int CountryCount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

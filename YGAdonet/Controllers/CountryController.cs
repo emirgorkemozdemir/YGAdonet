@@ -34,5 +34,46 @@ namespace YGAdonet.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public ActionResult ListCountries()
+        {
+            var ulkeler = db.Country.ToList();
+            return View(ulkeler);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteCountry(int id) 
+        {
+            Country deleting_country = db.Country.Find(id);
+            db.Country.Remove(deleting_country);
+            db.SaveChanges();
+
+            return RedirectToAction("ListCountries");
+        }
+
+        [HttpGet]
+        public ActionResult EditCountry(int id)
+        {
+            Country editing_country = db.Country.Find(id);
+            return View(editing_country);
+        }
+
+        [HttpPost]
+        public ActionResult EditCountry(Country posted_country)
+        {
+            if (ModelState.IsValid)
+            {
+                var db_country = db.Country.Find(posted_country.CountryID);
+                db_country.CountryName = posted_country.CountryName;
+                db_country.CountryCount = posted_country.CountryCount;
+                db.SaveChanges();
+                return RedirectToAction("ListCountries");
+            }
+            else
+            {
+                return View();
+            }
+        }
     }
 }

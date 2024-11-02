@@ -1,0 +1,20 @@
+﻿@using YGAdonet.Models
+@model Country
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("EditCountry","Country",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.CountryID)
+
+    @Html.ValidationMessageFor(m => m.CountryName)
+    @Html.TextBoxFor(m => m.CountryName)
+
+    @Html.ValidationMessageFor(m => m.CountryCount)
+    @Html.TextBoxFor(m => m.CountryCount)
+
+    <input type="submit" value="Edit" />
+}
