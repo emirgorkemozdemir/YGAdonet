@@ -38,6 +38,8 @@ namespace YGAdonet.Controllers
         [HttpGet]
         public ActionResult ListCountries()
         {
+            // Örnegin ListCountries açıldıgında ben admin olarak giriş yapmışım varsayalım.
+            Session["IsUserAdmin"] = true;
             var ulkeler = db.Country.ToList();
             return View(ulkeler);
         }
@@ -45,11 +47,15 @@ namespace YGAdonet.Controllers
         [HttpGet]
         public ActionResult DeleteCountry(int id) 
         {
-            Country deleting_country = db.Country.Find(id);
-            db.Country.Remove(deleting_country);
-            db.SaveChanges();
+            if (Convert.ToBoolean(Session["IsUserAdmin"]) == true)
+            {
+                Country deleting_country = db.Country.Find(id);
+                db.Country.Remove(deleting_country);
+                db.SaveChanges();
 
-            return RedirectToAction("ListCountries");
+                return RedirectToAction("ListCountries");
+            }
+            return RedirectToAction("AddCountry");
         }
 
         [HttpGet]
@@ -62,18 +68,22 @@ namespace YGAdonet.Controllers
         [HttpPost]
         public ActionResult EditCountry(Country posted_country)
         {
-            if (ModelState.IsValid)
+            if (Convert.ToBoolean(Session["IsUserAdmin"]) == true)
             {
-                var db_country = db.Country.Find(posted_country.CountryID);
-                db_country.CountryName = posted_country.CountryName;
-                db_country.CountryCount = posted_country.CountryCount;
-                db.SaveChanges();
-                return RedirectToAction("ListCountries");
+                if (ModelState.IsValid)
+                {
+                    var db_country = db.Country.Find(posted_country.CountryID);
+                    db_country.CountryName = posted_country.CountryName;
+                    db_country.CountryCount = posted_country.CountryCount;
+                    db.SaveChanges();
+                    return RedirectToAction("ListCountries");
+                }
+                else
+                {
+                    return View();
+                }
             }
-            else
-            {
-                return View();
-            }
+            return RedirectToAction("AddCountry");  
         }
     }
 }
