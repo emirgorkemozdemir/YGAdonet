@@ -55,7 +55,7 @@ namespace YGAdonet.Controllers
 
                 return RedirectToAction("ListCountries");
             }
-            return RedirectToAction("AddCountry");
+            return RedirectToAction("ListCountries");
         }
 
         [HttpGet]

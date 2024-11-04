@@ -72,7 +72,7 @@ namespace YGAdonet.Controllers
 
                 return RedirectToAction("ListPersons");
             }
-            return RedirectToAction("AddPerson");
+            return RedirectToAction("ListPersons");
         }
 
         [HttpGet]
@@ -101,7 +101,7 @@ namespace YGAdonet.Controllers
                     return View();
                 }
             }
-            return RedirectToAction("AddPerson");
+            return RedirectToAction("ListPersons");
         }
     }
 }
