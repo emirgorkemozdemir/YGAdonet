@@ -15,5 +15,7 @@
 
     @Html.ValidationMessageFor(m => m.PersonSurname)
     @Html.TextBoxFor(m => m.PersonSurname)
-< input type="submit" value="Edit" />
+
+    @Html.DropDownListFor(m => m.PersonCountry, new SelectList(ViewBag.sonuc, "Value", "Text"))
+    < input type="submit" value="Edit" />
 }

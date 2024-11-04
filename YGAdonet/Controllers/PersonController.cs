@@ -78,6 +78,7 @@ namespace YGAdonet.Controllers
         [HttpGet]
         public ActionResult EditPerson(int id)
         {
+            ViewBag.sonuc = GetCountries();
             Person editing_Person = db.Person.Find(id);
             return View(editing_Person);
         }
@@ -98,6 +99,7 @@ namespace YGAdonet.Controllers
                 }
                 else
                 {
+                    ViewBag.sonuc = GetCountries();
                     return View();
                 }
             }
