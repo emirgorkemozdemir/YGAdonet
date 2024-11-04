@@ -1,0 +1,19 @@
+﻿@using YGAdonet.Models
+@model Person
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("AddPerson", "Person", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationMessageFor(m => m.PersonName)
+    @Html.TextBoxFor(m => m.PersonName)
+    @Html.ValidationMessageFor(m => m.PersonSurname)
+    @Html.TextBoxFor(m => m.PersonSurname)
+
+    @Html.DropDownListFor(m=>m.PersonCountry, new SelectList(ViewBag.sonuc, "Value","Text"))
+
+    <input type="submit" value="Kaydet" />
+}

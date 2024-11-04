@@ -1,0 +1,19 @@
+﻿@using YGAdonet.Models
+@model Person
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("EditPerson", "Person", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.PersonID)
+
+    @Html.ValidationMessageFor(m => m.PersonName)
+    @Html.TextBoxFor(m => m.PersonName)
+
+    @Html.ValidationMessageFor(m => m.PersonSurname)
+    @Html.TextBoxFor(m => m.PersonSurname)
+< input type="submit" value="Edit" />
+}

@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CountryController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -223,6 +224,10 @@
     <Content Include="Views\Country\AddCountry.cshtml" />
     <Content Include="Views\Country\ListCountries.cshtml" />
     <Content Include="Views\Country\EditCountry.cshtml" />
+    <Content Include="Views\Person\AddPerson.cshtml" />
+    <Content Include="Views\Person\ListPersons.cshtml" />
+    <Content Include="Views\Person\DeletePerson.cshtml" />
+    <Content Include="Views\Person\EditPerson.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
